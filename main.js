@@ -218,6 +218,12 @@ app.on('ready', function () {
             target: options[2],
           })
           store.set('notifyList', oldList);
+          analytics.event('App', 'setAlerts', { evLabel: r })
+            .then((response) => {
+              log.info(response)
+            }).catch((err) => {
+              log.error(err)
+          });
         }
       })
       .catch(console.error);
@@ -278,7 +284,7 @@ app.on('ready', function () {
         break;
     }
 
-    analytics.event('App', 'changedType', { evLabel: `version ${app.getVersion()}` })
+    analytics.event('App', 'changedType', { evLabel: newType })
       .then((response) => {
         log.info(response)
       }).catch((err) => {
