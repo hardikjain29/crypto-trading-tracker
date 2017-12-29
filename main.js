@@ -260,19 +260,6 @@ app.on('ready', function () {
   updatePrice()
   store.set('notifyList', [])
 
-
-  // When currency is changed
-  const changeCurrency = (newcurrency) => {
-    currency = newcurrency
-    updatePrice()
-    analytics.event('App', 'changedCurrency', { evLabel: `version ${app.getVersion()}` })
-      .then((response) => {
-        log.info(response)
-      }).catch((err) => {
-        log.error(err)
-      });
-  }
-
   const changeType = (newType) => {
     type = newType
     updatePrice()
