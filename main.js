@@ -218,7 +218,6 @@ app.on('ready', function () {
             target: options[2],
           })
           store.set('notifyList', oldList);
-          console.log(oldList);
         }
       })
       .catch(console.error);
@@ -235,7 +234,6 @@ app.on('ready', function () {
     rate = await ticker()
     tray.setTitle(`₹${rate[type]}`);
     notifyList = store.get('notifyList');
-    console.log(notifyList);
 
     let sendNotify = notifyList.filter(x => {
       return x.rule === 'above' ? x.target < rate[x.type] : x.target > rate[x.type]

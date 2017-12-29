@@ -4,14 +4,14 @@
 
 Supported Markets:
 
-1) [Koinex](https://github.com/electron)
+1) [Koinex](https://koinex.in/)
 
-<p align="center"><img src="" width="600"/></p>
+<p align="center"><img src="https://media.giphy.com/media/3o751ZPZQORj1G61ig/giphy.gif" width="600"/></p>
 
 
 ### Downloading the app
 
-To download the app, click [here]() (currently available for macOS only)
+To download the app, click [here](https://github.com/hardikjain29/crypto-trading-tracker/releases/tag/1.0.0) (currently available for macOS only)
 
 ### Build the app locally for development (PR's welcome)
 
