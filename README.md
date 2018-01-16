@@ -35,4 +35,4 @@ npm install electron -g
 ### License
 This app is distributed under the Creative Commons Zero v1.0 Universal license
 
-Follow me on [Twitter](https://twitter.com/29hdkjain)
+Follow me on [Twitter](https://twitter.com/hardikjain29)
