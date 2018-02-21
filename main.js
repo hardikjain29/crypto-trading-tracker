@@ -1,4 +1,4 @@
-const { app, globalShortcut, BrowserWindow, Menu, protocol, ipcMain, Tray, Notification } = require('electron');
+const { app, BrowserWindow, Menu, protocol, ipcMain, Tray, Notification } = require('electron');
 const log = require('electron-log');
 const { autoUpdater } = require("electron-updater");
 const path = require('path');
@@ -43,7 +43,6 @@ if (process.platform === 'darwin') {
       },
       {
         label: 'Quit',
-        accelerator: 'Command+Q',
         click() {
           app.quit();
         }
@@ -71,23 +70,12 @@ const ticker = async () => {
 
 
 //-------------------------------------------------------------------
-// Open a window that displays the version when user press CMD+D
+// Auto updater setup
 //-------------------------------------------------------------------
-let win;
 
 function sendStatusToWindow(text) {
   log.info(text);
   win.webContents.send('message', text);
-}
-
-function createDefaultWindow() {
-  win = new BrowserWindow();
-  win.webContents.openDevTools();
-  win.on('closed', () => {
-    win = null;
-  });
-  win.loadURL(`file://${__dirname}/version.html#v${app.getVersion()}`);
-  return win;
 }
 
 autoUpdater.on('checking-for-update', () => {
@@ -113,6 +101,10 @@ autoUpdater.on('update-downloaded', (info) => {
   sendStatusToWindow('Update downloaded');
 });
 
+
+//-------------------------------------------------------------------
+// Booting the app
+//-------------------------------------------------------------------
 app.on('ready', function () {
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
@@ -184,16 +176,11 @@ app.on('ready', function () {
     },
     {
       label: 'Quit',
-      accelerator: 'CommandOrControl+Q',
       click() {
         app.quit()
       }
     }
   ])
-
-  globalShortcut.register('CommandOrControl+D', () => {
-    createDefaultWindow();
-  })
 
   let newAlert = () => {
     analytics.event('App', 'createdAlert', { evLabel: `version ${app.getVersion()}` })
