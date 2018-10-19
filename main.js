@@ -57,15 +57,16 @@ if (process.platform === 'darwin') {
 //-------------------------------------------------------------------
 const ticker = async () => {
   const data = await new Promise((resolve, reject) => {
-    cloudscraper.get('https://koinex.in/api/dashboards/ticker', function (error, response, body) {
+    cloudscraper.get('https://koinex.in/api/ticker', function (error, response, body) {
       if (error) {
         console.log('Error occurred');
       } else {
         resolve(JSON.parse(body));
       }
     });
-  })
-  return { BTC: data.BTC, ETH: data.ETH, LTC: data.LTC, XRP: data.XRP }
+  });
+  const { prices: { inr } } = data;
+  return { BTC: inr.BTC, ETH: inr.ETH, LTC: inr.LTC, XRP: inr.XRP }
 }
 
 
