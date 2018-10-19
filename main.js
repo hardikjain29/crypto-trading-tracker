@@ -66,7 +66,7 @@ const ticker = async () => {
     });
   });
   const { prices: { inr } } = data;
-  return { BTC: inr.BTC, ETH: inr.ETH, LTC: inr.LTC, XRP: inr.XRP }
+  return { BTC: inr.BTC, ETH: inr.ETH, LTC: inr.LTC, XRP: inr.XRP, TRX: inr.TRX }
 }
 
 
@@ -170,6 +170,13 @@ app.on('ready', function () {
       type: 'radio',
       click() {
         changeType('XRP')
+      },
+    },
+    {
+      label: 'TRX',
+      type: 'radio',
+      click() {
+        changeType('TRX')
       },
     },
     {
